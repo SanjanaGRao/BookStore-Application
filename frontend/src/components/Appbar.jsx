@@ -5,6 +5,7 @@ import { IconButton, TextField, InputAdornment } from "@mui/material";
 import { useSelector } from "react-redux";
 import { setSearchedBooks } from "../reduxActions/actionsOnBooks";
 import { useDispatch } from "react-redux";
+import { setCurrentPage } from "../reduxActions/actionsOnBooks";
 
 export default function Appbar() {
   const [search, setSearch] = useState("");
@@ -13,9 +14,11 @@ export default function Appbar() {
 
   const handleSearch = (searchValue) => {
     setSearch(searchValue);
+    dispatch(setCurrentPage(1));
   };
 
   useEffect(() => {
+    console.log();
     dispatch(
       setSearchedBooks(
         myBooks.filter((item) => {
