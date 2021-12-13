@@ -122,25 +122,23 @@ const ButtonContainer = ({data}) => {
 }
   return (
     <div className="displayBook">
-      <br />
       <span className="topContent">
         <div>
           Books <font className="bookSize">({books.length} items)</font>{" "}
         </div>
         <div>
-          <FormControl variant="outlined" className={classes.formControl} size="small">
+          <FormControl variant="outlined" className={classes.formControl} style={{paddingRight:"0.3em"}}>
             <Select
               className={classes.optionSelect}
               native
-              aria-setsize={5}
+              style={{fontSize:"13px"}}
               inputProps={{ name: "type" }}
               value={sort}
               onChange={handleSort}
             >
-              <option value={"rel"}>Sort by Relevance</option>
-              <option value={"asc"}>Price: Low to High</option>
-              <option value={"desc"}>Price: High to Low</option>
-              <option value={"new"}>Newest Arrival</option>
+              <option value={"rel"} style={{fontSize:"11.5px"}}>Sort by Relevance</option>
+              <option value={"asc"} style={{fontSize:"11.5px"}}>Price: Low to High</option>
+              <option value={"desc"} style={{fontSize:"11.5px"}}>Price: High to Low</option>
             </Select>
           </FormControl>
         </div>
@@ -161,10 +159,6 @@ const ButtonContainer = ({data}) => {
                 Rs. {data.price}
               </Typography>
             </div>
-            {/* <div className="buttonContainer">
-              <Button className={classes.addToBagButton}>Add to bag</Button>
-              <Button className={classes.wishListButton}>Wishlist</Button>
-            </div> */}
             {
               ((cart.length !== 0) && (cart.items.some(obj => obj.name === data.title))) ? <AddedToBag />: <ButtonContainer data={data}/>
             }
