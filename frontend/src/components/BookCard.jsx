@@ -47,14 +47,14 @@ const useStyles = makeStyles((theme) => ({
     margin: "5px",
     width: "80px",
     fontSize: "13px",
+    border: "1px solid #9D9D9D",
+    opacity: "1",
     borderRadius: "2px",
     fontWeight: "bold",
   },
-
   optionSelect: {
     padding: "5px 5px",
   },
-
   container: {
     paddingTop: theme.spacing(10),
     maxWidth:'774px'
