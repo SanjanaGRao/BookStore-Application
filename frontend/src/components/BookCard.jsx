@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import "../styles/booksCard.scss";
 import PaginationPage from "./Pagination";
-import { sortByPrice, setCurrentPage } from "../reduxActions/actionsOnBooks";
+import { sortByPrice, setCurrentPage, setCart } from "../reduxActions/actionsOnBooks";
+import {create} from '../service/cartOperations';
 
 const useStyles = makeStyles((theme) => ({
   bookName: {
@@ -32,9 +33,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "2px",
   },
   addedBagButton: {
-    backgroundColor: "#1976D2",
+    background: "#3371B5 0% 0% no-repeat padding-box",
+    opacity: 1,
     width: "170px",
     margin: "5px",
+    marginLeft: "3em",
     color: "#ffff",
     borderRadius: "2px",
     fontSize: "11px",
@@ -51,13 +54,19 @@ const useStyles = makeStyles((theme) => ({
   optionSelect: {
     padding: "5px 5px",
   },
+
+  container: {
+    paddingTop: theme.spacing(10),
+    maxWidth:'774px'
+},
+
 }));
 
 export default function BookCard() {
   const classes = useStyles();
   const books = useSelector((state) => state.allBooks.searchedBooks);
   const currentPage = useSelector((state) => state.allBooks.currentPage);
-  // const [currentPage, setCurrentPage] = useState(1);
+  const cart = useSelector((state) => state.allBooks.cartContents);
   const [booksPerPage] = useState(12);
   const [sort, setSort] = useState("");
   // Get current posts
@@ -67,10 +76,50 @@ export default function BookCard() {
   const paginate = (pageNumber) => dispatch(setCurrentPage(pageNumber));
   console.log(books);
   const dispatch = useDispatch();
+
   const handleSort = (e) => {
     setSort(e.target.value);
     dispatch(sortByPrice(e.target.value));
+    dispatch(setCurrentPage(1));
   };
+
+  const HandleAddToCart = (productId) => {
+    const data = {
+        "productId": productId,
+        "quantity": 1
+    }
+    create(data).then((res) => {
+      console.log(res);
+        dispatch(setCart(res.data))
+    }).catch((err) => console.log(err.message));
+}
+
+const ButtonContainer = ({data}) => {
+    return (
+        <div className="buttonContainer">
+            <Button className={
+                    classes.addToBagButton
+                }
+                onClick={
+                    () => {
+                        let productId = data._id;
+                        HandleAddToCart(productId)
+                    }
+            }>Add to bag</Button>
+            <Button className={
+                classes.wishListButton
+            }>Wishlist</Button>
+        </div>
+    )
+}
+
+  const AddedToBag = () => {
+    return (
+        <Button className={
+            classes.addedBagButton
+        }>Added To Bag</Button>
+    )
+}
   return (
     <div className="displayBook">
       <br />
@@ -79,10 +128,11 @@ export default function BookCard() {
           Books <font className="bookSize">({books.length} items)</font>{" "}
         </div>
         <div>
-          <FormControl variant="outlined" className={classes.formControl}>
+          <FormControl variant="outlined" className={classes.formControl} size="small">
             <Select
               className={classes.optionSelect}
               native
+              aria-setsize={5}
               inputProps={{ name: "type" }}
               value={sort}
               onChange={handleSort}
@@ -111,10 +161,13 @@ export default function BookCard() {
                 Rs. {data.price}
               </Typography>
             </div>
-            <div className="buttonContainer">
+            {/* <div className="buttonContainer">
               <Button className={classes.addToBagButton}>Add to bag</Button>
               <Button className={classes.wishListButton}>Wishlist</Button>
-            </div>
+            </div> */}
+            {
+              ((cart.length !== 0) && (cart.items.some(obj => obj.name === data.title))) ? <AddedToBag />: <ButtonContainer data={data}/>
+            }
             <div className="descClass">
                             <Typography className={
                                 classes.bookName

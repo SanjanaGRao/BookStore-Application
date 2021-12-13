@@ -8,7 +8,7 @@
  const express = require("express");
  const router = express.Router();
  const userOperations = require("../../controller/user/user.controller");
- const validateName = require("../../middleware/user.middleware");
+ const validateName = require("../../middleware/user/user.middleware");
  const { body } = require("express-validator");
  
  //User Login
