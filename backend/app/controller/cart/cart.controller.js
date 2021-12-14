@@ -39,11 +39,11 @@ class cartController {
       res.status(500).send("Something went wrong");
     }
   };
-  
+
   deleteCart = async (req, res) => {
     const userId = req.params.id;
     try {
-      let cart = await deleteCart(userId);
+      let cart = await cartService.deleteCart(userId);
       return res.status(201).send(cart);
     } catch (err) {
       console.log(err);

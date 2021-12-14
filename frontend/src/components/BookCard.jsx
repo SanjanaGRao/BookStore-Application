@@ -119,6 +119,9 @@ const ButtonContainer = ({data}) => {
         }>Added To Bag</Button>
     )
 }
+
+console.log(books);
+console.log(currentBooks);
   return (
     <div className="displayBook">
       <span className="topContent">

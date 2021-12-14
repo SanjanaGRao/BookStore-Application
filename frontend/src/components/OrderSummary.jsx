@@ -6,14 +6,16 @@ import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 import {emptyCart} from '../service/cartOperations';
 import { setCart } from "../reduxActions/actionsOnBooks";
+import { useDispatch } from "react-redux";
 
 export default function OrderSummary({showOrder,orders}) {
     let history = useHistory();
+    const dispatch = useDispatch();
 
     const handleSubmit = () => {
         emptyCart().then((res)=>{console.log(res)}).catch((err)=>{console.log(err)});
-        setCart();
-        history.push('/orderComplete');
+        dispatch(setCart());
+        window.location="/orderComplete";
     }
 
     return(

@@ -6,7 +6,6 @@ import success from "../assets/Group 4132.svg";
 import img from "../assets/Screenshot (298).png";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
-import { useHistory } from "react-router-dom";
 import "../styles/cart.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function OrderComplete() {
-  let history = useHistory();
   const classes = useStyles();
 
   return (
@@ -56,7 +54,7 @@ export default function OrderComplete() {
         <Button
           variant="contained"
           onClick={() => {
-            history.push("/dashboard");
+            window.location="/dashboard";
           }}
         >
           Continue Shopping

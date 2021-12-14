@@ -39,7 +39,18 @@ export default function CartComponents({ cart }) {
   };
   const placeOrder = () => {
     setShowCustomer(true);
+    if(cart.items.length === 0) {
+      setShowCustomer(false);
+      console.log(cart.items.length);
+      window.location="/dashboard";
+    }
   };
+  const checkCart = () => {
+    if(cart.items.length === 0) {
+      console.log(cart.items.length);
+      window.location="/dashboard";
+    }
+  }
   return (
     <>
       <Paper
@@ -95,6 +106,7 @@ export default function CartComponents({ cart }) {
                   variant="text"
                   onClick={() => {
                     handleRemove(data.productId);
+                    checkCart();
                   }}
                 >
                   Remove

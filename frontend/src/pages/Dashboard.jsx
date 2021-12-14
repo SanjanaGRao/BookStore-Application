@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect,useState} from "react";
 import { getAllBooks } from "../service/booksForDashboard";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setBooks, setCart} from "../reduxActions/actionsOnBooks";
 import Appbar from '../components/Appbar';
 import BookCard from "../components/BookCard";
-import Cart from "../components/CartComponents";
 import Paper from '@mui/material/Paper';
 import { cartGet } from "../service/cartOperations";
 import "../styles/dashboard.scss"
@@ -35,7 +34,6 @@ export default function Dashboard() {
         });
     }
 
-    const cart = useSelector((state) => state.allBooks.cartContents);
     
     return(
         <>
