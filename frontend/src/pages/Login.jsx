@@ -50,6 +50,7 @@ export default function Login() {
   };
 
   return (
+    <div className="mainBoxLogin">
     <div className="login">
       <div className="formCenter">
         <form className="formFields">
@@ -129,7 +130,7 @@ export default function Login() {
               Sign In
             </button>
             <br /> <br />
-            <Link to="/" className="formFieldLink">
+            <Link to="/create" className="formFieldLink">
               New here? Create an account
             </Link>
           </div>
@@ -145,6 +146,7 @@ export default function Login() {
           alt=""
         />
       </div>
+    </div>
     </div>
   );
 }

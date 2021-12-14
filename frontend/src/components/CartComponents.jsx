@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { Typography, IconButton, Button, Paper } from "@material-ui/core";
 import "../styles/cart.scss";
 import Grid from "@mui/material/Grid";
-import useStyles from "../components/BookCard";
+import useStyles from "./BookCard";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { setCart } from "../reduxActions/actionsOnBooks";
 import { useDispatch } from "react-redux";
 import { deleteItems, create } from "../service/cartOperations";
-import CustomerAddress from "../components/CustomerAddress";
-import Order from "../components/OrderSummary";
+import CustomerAddress from "./CustomerAddress";
+import Order from "./OrderSummary";
 
-export default function Cart({ cart }) {
+export default function CartComponents({ cart }) {
   const classes = useStyles();
   const [showCustomer, setShowCustomer] = useState(false);
+  const [showOrder,setShowOrder]=useState(false);
+  const [orders,setOrder]=useState([]);
   const dispatch = useDispatch();
   const handleQuantity = (productId, quantity) => {
     const data = {
@@ -45,7 +47,7 @@ export default function Cart({ cart }) {
         sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 } ,maxWidth:'724px' }}
       >
         <Typography variant="h6" style={{paddingLeft:"2em", paddingTop:"1em"}} gutterBottom>
-          My Cart ({cart.items.length} items)
+          My Cart ({cart.items.length})
         </Typography>
 
         {cart.items.map((data) => (
@@ -113,8 +115,8 @@ export default function Cart({ cart }) {
         </Button>
         </div>
       </Paper>
-      <CustomerAddress showCustomer={showCustomer} />
-      <Order />
+      <CustomerAddress showCustomer={showCustomer} setShowOrder={setShowOrder} setOrder={setOrder} />
+      <Order showOrder={showOrder} orders={orders}/>
     </>
   );
 }

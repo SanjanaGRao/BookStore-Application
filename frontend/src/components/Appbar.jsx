@@ -67,10 +67,9 @@ export default function Appbar({setShowCart}) {
               }}
             />
           </div>
-          {/* className="cart-icon" */}
           <div className="cart">Cart</div>
           <div className="rightIcons" align="right">
-          <IconButton onClick={()=>{setShowCart(true)}}>
+          <IconButton onClick={()=>{{setShowCart(true); window.location="/cart"}}}>
             <ShoppingCartOutlinedIcon />
           </IconButton>
           </div>

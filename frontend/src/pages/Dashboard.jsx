@@ -4,14 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {setBooks, setCart} from "../reduxActions/actionsOnBooks";
 import Appbar from '../components/Appbar';
 import BookCard from "../components/BookCard";
-import Cart from "../components/Cart";
+import Cart from "../components/CartComponents";
 import Paper from '@mui/material/Paper';
 import { cartGet } from "../service/cartOperations";
 import "../styles/dashboard.scss"
 
 export default function Dashboard() {
     const dispatch = useDispatch();
-    const [showCart,setShowCart]=useState(false);
+    const [showCart,setShowCart] = useState(false);
     
     useEffect(() => {
         // eslint-disable-next-line
@@ -41,8 +41,7 @@ export default function Dashboard() {
         <>
         <Appbar setShowCart={setShowCart} />
         <Paper variant="outlined" sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 } ,border:"none"}}>
-        {(showCart)?(cart.length===undefined?<Cart cart={cart}/>:console.log("hi")):<div className="rightIcon">
-            <BookCard/> </div>  } 
+            <BookCard/> 
         </Paper>
         </>
     );

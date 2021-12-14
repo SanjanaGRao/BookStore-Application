@@ -11,6 +11,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import { Validation } from '../components/Validation';
 import { create } from '../service/detailsOfCustomer';
+import { createOrder } from "../service/orderConfirmation";
 
 const initialFValues = {
    name:"",
@@ -22,7 +23,7 @@ const initialFValues = {
    landmark:"",
    type:""
 }
-export default function CustomerAddress({showCustomer}) {
+export default function CustomerAddress({showCustomer,setShowOrder,setOrder}) {
     const validate = (fieldValues = values) => {
         let temp = {
             ...errors
@@ -55,7 +56,13 @@ const data={
     type:values.type
 }
 const handleSubmit=()=>{
-create(data).then((res)=>console.log(res)).catch((err)=>console.log(err))
+create(data)
+.then((res)=>console.log(res))
+.catch((err)=>console.log(err));
+createOrder()
+.then((res)=>{console.log(res.data);setOrder(res.data)})
+.catch((err)=>{console.log(err)});
+setShowOrder(true);
 }
     return (
     <>
@@ -106,9 +113,9 @@ create(data).then((res)=>console.log(res)).catch((err)=>console.log(err))
                     <FormLabel component="legend">Type</FormLabel>
                     <div><br />
                     <RadioGroup row aria-label="type" name="type" onChange={handleInputChange}>
-                        <FormControlLabel value="home" control={<Radio size='small'/>} label="Home" style={{paddingLeft:"1em"}}/>
-                        <FormControlLabel value="work" control={<Radio size='small' />} label="Work" style={{paddingLeft:"3em"}} />
-                        <FormControlLabel value="other" control={<Radio size='small'/>} label="Other" style={{paddingLeft:"3em"}} />
+                        <FormControlLabel value="home" control={<Radio size='small'/>} label="Home" style={{paddingLeft:"0.75em"}}/>
+                        <FormControlLabel value="work" control={<Radio size='small' />} label="Work" style={{paddingLeft:"1em"}} />
+                        <FormControlLabel value="other" control={<Radio size='small'/>} label="Other" style={{paddingLeft:"1em"}} />
                     </RadioGroup>
                     </div>
                 </FormControl>

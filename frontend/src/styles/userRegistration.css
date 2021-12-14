@@ -238,3 +238,23 @@
   color: #616e7f;
   text-align: center;
 }
+
+.mainBox {
+  padding-top: 2em;
+  padding-left: 15em;
+}
+
+.mainBoxForget {
+  padding-top: 8em;
+  padding-left: 27em;
+}
+
+.mainBoxLogin {
+  padding-top: 5em;
+  padding-left: 20em;
+}
+
+.mainBoxReset {
+  padding-top: 6.5em;
+  padding-left: 27em;
+}

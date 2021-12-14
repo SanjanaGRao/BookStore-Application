@@ -32,11 +32,12 @@ export default function ResetPassword() {
         token: token,
       });
       alert("Password Reset Successful.");
-      window.location = "/login";
+      window.location = "/";
     }
   };
 
   return (
+    <div className="mainBoxReset">
     <div className="reset">
       <div className="formCenter">
         <form className="formFields">
@@ -108,6 +109,7 @@ export default function ResetPassword() {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }

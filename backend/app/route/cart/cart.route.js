@@ -6,5 +6,6 @@ const {ensureToken} = require('../../middleware/cart/cart.middleware');
 routerCart.get('/:id',  cartController.getCartItems);
 routerCart.post('/:id',  cartController.addCartItem);
 routerCart.delete('/:id/:itemId', cartController.deleteItem);
+routerCart.delete('/:id', cartController.deleteCart);
 
 module.exports = routerCart;

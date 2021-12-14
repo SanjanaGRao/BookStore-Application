@@ -14,6 +14,7 @@ export const getCustomer = () => {
 export const create = (data) => {
     let url = `http://localhost:5000/customer/${token}`
     return addCart(url, data).then((response) => {
+        console.log(response);
         return response
     }).catch((err) => {
         throw err

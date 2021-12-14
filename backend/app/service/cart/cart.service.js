@@ -8,7 +8,6 @@ class cartService {
     try {
       cart = await Cart.find({ userId: userId });
     } catch (err) {
-      console.log(err);
       logger.error(err);
     }
     if (cart && cart[0].items.length > 0) {
@@ -24,7 +23,6 @@ class cartService {
       cart = await Cart.find({ userId: userId });
     } catch (err) {
        logger.error(err);
-      console.log(err);
     }
     try {
       item = await findABook(productId);
@@ -83,7 +81,6 @@ class cartService {
       cart = await Cart.find({ userId: userId });
     } catch (err) {
         logger.error(err);
-      console.log(err);
     }
     let itemIndex = cart[0].items.findIndex((p) => p.productId == productId);
     if (itemIndex > -1) {
@@ -93,6 +90,17 @@ class cartService {
     }
     cart = await cart[0].save();
     return cart;
+  };
+  deleteCart= async(userId) => {
+    let cart;
+    try {
+        cart = await Cart.find({userId: userId});
+    } catch (err) {
+        console.log(err);
+        logger.error(err);
+    }
+    await cart[0].delete();
+    return ("Successfully deleted")
   };
 }
 module.exports = new cartService();

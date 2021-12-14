@@ -16,10 +16,10 @@ const routeUsers = require("./app/route/user/user.route");
 const routeBooks = require("./app/route/books/book.routes");
 const routeCart = require("./app/route/cart/cart.route");
 const routeCustomer = require("./app/route/customerDetails/customer.routes");
+const routeOrder = require('./app/route/order/order.route');
 const dbConnect = require("./config/dbConnect");
 const logger = require("./config/logger");
 const cors = require("cors");
-const routerCustomer = require("./app/route/customerDetails/customer.routes");
 const app = express();
 
 const corsOptions = {
@@ -35,7 +35,8 @@ app.use(bodyParser.json());
 app.use("/users", routeUsers);
 app.use("/books", routeBooks);
 app.use("/cart", routeCart);
-app.use("/customerDetails", routerCustomer);
+app.use("/customer", routeCustomer);
+app.use("/order", routeOrder);
 
 // defining a simple route
 app.get("/", (req, res) => {

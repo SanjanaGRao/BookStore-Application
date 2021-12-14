@@ -22,10 +22,11 @@ export default function ForgetPassword() {
   };
 
   const handleBackButton = () => {
-      window.location="/login";
+      window.location="/";
   }
 
   return (
+    <div className="mainBoxForget">
       <div className="forget">
         <form className="formFields">
           <div className="formFieldForget" align="center">
@@ -81,6 +82,7 @@ export default function ForgetPassword() {
           </div>
         </div>
         </form>
+      </div>
       </div>
   );
 }

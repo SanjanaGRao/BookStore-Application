@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(10),
     maxWidth:'774px'
 },
-
 }));
 
 export default function BookCard() {

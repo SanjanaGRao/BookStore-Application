@@ -96,6 +96,7 @@ export default function CreateAccount() {
   };
 
   return (
+    <div className="mainBox">
     <div className="createUser">
       <div className="formCenter">
         <form className="formFields">
@@ -251,11 +252,11 @@ export default function CreateAccount() {
               Sign Up
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/login" className="formFieldLink">
+            <Link to="/" className="formFieldLink">
               Already have an account? Sign In
             </Link>
           </div>
-          {accountCreated ? (window.location = "/login" ) : null}
+          {accountCreated ? (window.location = "/" ) : null}
         </form>
       </div>
       <div class="imgBx" align="right" style={{ paddingRight: "3em" }}>
@@ -267,6 +268,7 @@ export default function CreateAccount() {
           alt=""
         />
       </div>
+    </div>
     </div>
   );
 }
