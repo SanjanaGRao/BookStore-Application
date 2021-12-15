@@ -6,7 +6,8 @@ import Appbar from '../components/Appbar';
 import BookCard from "../components/BookCard";
 import Paper from '@mui/material/Paper';
 import { cartGet } from "../service/cartOperations";
-import "../styles/dashboard.scss"
+import "../styles/dashboard.scss";
+import Footer from "../components/Footer";
 
 export default function Dashboard() {
     const dispatch = useDispatch();
@@ -41,6 +42,9 @@ export default function Dashboard() {
         <Paper variant="outlined" sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 } ,border:"none"}}>
             <BookCard/> 
         </Paper>
+        <div style={{paddingTop:"62em"}}>
+        <Footer />
+        </div>
         </>
     );
 }

@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { Validation } from '../components/Validation';
 import { create } from '../service/detailsOfCustomer';
 import { createOrder } from "../service/orderConfirmation";
+import "../styles/cart.scss";
 
 const initialFValues = {
    name:"",
@@ -55,18 +56,22 @@ const data={
     landMark:values.landMark,
     type:values.type
 }
-const handleSubmit=()=>{
-create(data)
-.then((res)=>console.log(res))
-.catch((err)=>console.log(err));
-createOrder()
-.then((res)=>{console.log(res.data);setOrder(res.data)})
-.catch((err)=>{console.log(err)});
-setShowOrder(true);
-}
+const handleSubmit = () => {
+  create(data)
+  createOrder()
+    .then((res) => {
+      console.log(res.data);
+      setOrder(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  setShowOrder(true);
+};
     return (
-    <>
-         <Paper variant="outlined" sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 } ,maxWidth:'724px'}}>
+    <div className='mainboxCustomer'>
+         <Paper variant="outlined" 
+         sx={{ m: { xs: 1, md: 5 }, p: { xs: 1, md: 2 } ,maxWidth:'724px'}}>
         <Typography variant="h6" gutterBottom>
             Customer Details
         </Typography>
@@ -130,6 +135,6 @@ setShowOrder(true);
                   </Button>
                   </div>
         </Grid> ):" "}</Paper>
-    </>
+    </div>
     )
 }

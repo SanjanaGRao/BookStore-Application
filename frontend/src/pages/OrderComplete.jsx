@@ -1,5 +1,6 @@
-import Home from "../components/Appbar";
-import React from "react";
+import Appbar from "../components/Appbar";
+import React,{useState} from "react";
+import { useSelector} from "react-redux";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import success from "../assets/Group 4132.svg";
@@ -7,6 +8,7 @@ import img from "../assets/Screenshot (298).png";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@mui/material/Button";
 import "../styles/cart.scss";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,10 +26,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrderComplete() {
   const classes = useStyles();
+  const [showCart,setShowCart] = useState(false);
+  const orderId = useSelector((state) => state.allBooks.orderId);
 
   return (
     <>
-      <Home />
+      <Appbar setShowCart={setShowCart}/>
       <Stack
         direction="column"
         justifyContent="center"
@@ -46,7 +50,7 @@ export default function OrderComplete() {
 
         <div className="success-info">
           <Typography>
-            Hurray! Your order is confirmed the order id is #123456 save the
+            Hurray! Your order is confirmed the order id is #{orderId} save the
             order id for further communication..
           </Typography>
         </div>
@@ -60,6 +64,9 @@ export default function OrderComplete() {
           Continue Shopping
         </Button>
       </Stack>
+      <div style={{paddingTop:"1em"}}>
+      <Footer />
+      </div>
     </>
   );
 }

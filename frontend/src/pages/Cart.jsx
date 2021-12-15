@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCart } from "../reduxActions/actionsOnBooks";
 import Appbar from "../components/Appbar";
 import CartCard from "../components/CartComponents";
-import Paper from "@mui/material/Paper";
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import "../styles/dashboard.scss";
+import Footer from "../components/Footer";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -29,16 +31,19 @@ export default function Cart() {
   return (
     <>
       <Appbar />
-      <Paper
-        variant="outlined"
-        sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 }, border: "none" }}
-      >
-        {cart.length === undefined ? (
-          <CartCard cart={cart} />
-        ) : (
-          console.log("hi")
-        )}
-      </Paper>
+      {cart && cart.length === undefined ? (
+        <CartCard cart={cart} />
+      ) : (
+        <Paper
+          variant="outlined"
+          sx={{ m: { xs: 1, md: 5 }, p: { xs: 1, md: 2 }, maxWidth: "724px" }}
+        >
+          <Typography variant="h6" gutterBottom sx={{ py: 3 }}>
+            My Cart (0 items)
+          </Typography>
+        </Paper>
+      )}
+       <Footer/>
     </>
   );
 }

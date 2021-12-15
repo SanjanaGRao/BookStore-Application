@@ -34,7 +34,12 @@ export default function Appbar({setShowCart}) {
         })
       )
     );
-  }, [search, myBooks]);
+  }, [search, myBooks]);// eslint-disable-next-line
+
+  const handleClickIcon = () => {
+    setShowCart(true); 
+    window.location="/cart"
+  }
 
   return (
     <nav>
@@ -69,7 +74,7 @@ export default function Appbar({setShowCart}) {
           </div>
           <div className="cart">Cart</div>
           <div className="rightIcons" align="right">
-          <IconButton onClick={()=>{{setShowCart(true); window.location="/cart"}}}>
+          <IconButton onClick={()=>{handleClickIcon()}}> 
             <ShoppingCartOutlinedIcon />
           </IconButton>
           </div>

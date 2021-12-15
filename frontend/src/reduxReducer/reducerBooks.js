@@ -4,6 +4,7 @@ const intialState = {
   searchedBooks: [],
   currentPage: 1,
   cartContents: [],
+  orderId: "",
 };
 
 function sortDescendingOrder(array, field) {
@@ -73,6 +74,11 @@ export const reducerBooks = (state = intialState, { type, payload }) => {
         cartContents: state.cartContents.filter(
           (item) => item.productId !== payload
         ),
+      };
+    case ActionTypes.ORDER_ID:
+      return {
+        ...state,
+        orderId: payload,
       };
     default:
       return state;

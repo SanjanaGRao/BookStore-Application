@@ -38,17 +38,6 @@ app.use("/cart", routeCart);
 app.use("/customer", routeCustomer);
 app.use("/order", routeOrder);
 
-// defining a simple route
-app.get("/", (req, res) => {
-  res.json({
-    message:
-      "Welcome to FundooNotes application. Take notes quickly. Organize and keep track of all your notes.",
-  });
-  logger.info(
-    "Welcome to FundooNotes application. Take notes quickly. Organize and keep track of all your notes."
-  );
-});
-
 // listen for requests
 module.exports = app.listen(process.env.PORT, () => {
   console.log("Server is listening on port 5000.");

@@ -3,7 +3,7 @@ const logger = require('../../../config/logger');
 
 class orderController {
 getOrderItems = async (req, res) => {
-    const userId=req.params.id;
+    const userId=req.body.userId;
     try {
         const data = await orderService.getOrder(userId);
         return res.send(data)
@@ -15,7 +15,7 @@ getOrderItems = async (req, res) => {
 };
 
 addOrderItem = async (req, res) => {
-    const userId=req.params.id;
+    const userId=req.body.userId;
     try {
         const data = await orderService.addToOrder(userId);
         return res.status(201).send(data);

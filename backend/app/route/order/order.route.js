@@ -1,8 +1,9 @@
 const {Router} = require('express');
 const orderController = require('../../controller/order/order.controller');
 const routerOrder = Router();
+const {ensureToken} = require('../../middleware/cart/cart.middleware');
 
-routerOrder.get('/:id',  orderController.getOrderItems);
-routerOrder.post('/:id',  orderController.addOrderItem);
+routerOrder.get('/',  ensureToken, orderController.getOrderItems);
+routerOrder.post('/',  ensureToken, orderController.addOrderItem);
 
 module.exports = routerOrder;

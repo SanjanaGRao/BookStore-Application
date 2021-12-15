@@ -1,15 +1,14 @@
-import React,{useState} from "react";
+import React from "react";
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { useHistory } from "react-router-dom";
 import {emptyCart} from '../service/cartOperations';
 import { setCart } from "../reduxActions/actionsOnBooks";
 import { useDispatch } from "react-redux";
+import "../styles/cart.scss";
 
 export default function OrderSummary({showOrder,orders}) {
-    let history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
@@ -19,8 +18,8 @@ export default function OrderSummary({showOrder,orders}) {
     }
 
     return(
-        <>
-         <Paper variant="outlined" sx={{ m: { xs: 2, md: 6 }, p: { xs: 2, md: 3 } ,maxWidth:'724px'}}>
+        <div className="mainBoxOrder">
+         <Paper variant="outlined" sx={{ m: { xs: 1, md: 5 }, p: { xs: 1, md: 2 } ,maxWidth:'724px'}}>
         <Typography variant="h6" gutterBottom  >
             Order Summary
         </Typography>
@@ -31,7 +30,7 @@ export default function OrderSummary({showOrder,orders}) {
            orders.items.map((data) => (
                <Grid container
            spacing={1} >
-               <Grid item xs={4}  sx={{ py: { xs: 2, md: 3 }}}>
+               <Grid item xs={4}  sx={{ py: { xs: 2, md: 3 }}} style={{paddingTop:"1.5em", paddingLeft:"2em"}}>
                <img
                  className="bookImage"
                  src={data.image}
@@ -40,11 +39,11 @@ export default function OrderSummary({showOrder,orders}) {
              </Grid>
               <Grid item xs={8}>
               <div style={{ marginLeft: "10px" }}>
-                <Typography align="left"  style={{fontWeight: "bold", fontSize: "14px" }}>{data.name}</Typography>
+                <Typography align="left"  style={{fontWeight: "bold", fontSize: "14px", paddingTop:"1.5em" }}>{data.name}</Typography>
                 <Typography
                   align="left"
                   color="text.secondary"
-                  style={{ fontSize: "14px" }}
+                  style={{ fontSize: "11px" }}
                 >
                   by {data.author}
                 </Typography>
@@ -57,12 +56,12 @@ export default function OrderSummary({showOrder,orders}) {
               </div></Grid></Grid>
            )
            )}
-               <Grid item xs={4}  align="right">
-                   <Typography style={{ fontWeight: "bold", fontSize: "18px" }}>
+               <Grid item xs={3.2}  align="right">
+                   <Typography style={{ fontWeight: "bold", fontSize: "17px" }}>
                        Total Bill is Rs.{orders.bill}
                    </Typography>
                </Grid>
-           <Grid item xs={8}  align="right">
+           <Grid item xs={8}  align="right" >
              <Button
                    variant="contained"
                    onClick={(e)=>{handleSubmit()}}
@@ -70,9 +69,9 @@ export default function OrderSummary({showOrder,orders}) {
                Checkout
                  </Button></Grid>
            </Grid>
+          
         ):""}
-      
         </Paper>
-        </>
+        </div>
     )
 }

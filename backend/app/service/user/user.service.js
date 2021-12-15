@@ -18,8 +18,8 @@
        .loginUser(userDetails)
        .then((data) => {
          if (bcrypt.compareSync(userDetails.password, data.password)) {
-           //var token = jwtHelper.generateToken(data._id);
-           return data._id;
+           var token = jwtHelper.generateToken(data._id);
+           return token;
          } else {
            throw new Error("Password is incorrect");
          }
