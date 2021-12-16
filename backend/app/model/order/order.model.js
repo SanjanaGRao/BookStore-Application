@@ -1,6 +1,15 @@
+/**
+ * @file            : order.model.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/**
+ * @description schema for defining order details
+ */
 const OrderSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,

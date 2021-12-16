@@ -1,3 +1,9 @@
+/**
+ * @file            : nodeMailer.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 var nodemailer = require("nodemailer");
 require('dotenv').config();
 

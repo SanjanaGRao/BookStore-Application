@@ -1,7 +1,19 @@
+/**
+ * @file            : cart.controller.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 const cartService = require("../../service/cart/cart.service");
 const logger = require("../../../config/logger");
 
 class cartController {
+  /**
+   * @description to get the items in the cart
+   * @param {Object} req 
+   * @param {Object} res 
+   * @returns data or erro
+   */
   getCartItems = async (req, res) => {
     const userId = req.body.userId;
     try {
@@ -13,6 +25,13 @@ class cartController {
       res.status(500).send("Something went wrong");
     }
   };
+  
+  /**
+   * @description to add an item to the cart
+   * @param {Object} req 
+   * @param {Object} res 
+   * @returns data or error
+   */
   addCartItem = async (req, res) => {
     const userId = req.body.userId;
     const productId = req.body.productId;
@@ -27,6 +46,12 @@ class cartController {
     }
   };
 
+  /**
+   * @description to delete an item from the cart
+   * @param {Object} req 
+   * @param {Object} res 
+   * @returns data or error
+   */
   deleteItem = async (req, res) => {
     const userId = req.body.userId;
     const productId = req.params.itemId;
@@ -40,6 +65,12 @@ class cartController {
     }
   };
 
+  /**
+   * @description to delete an entire cart
+   * @param {Object} req 
+   * @param {Object} res 
+   * @returns data or error
+   */
   deleteCart = async (req, res) => {
     const userId = req.body.userId;
     try {

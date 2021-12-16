@@ -22,39 +22,39 @@ export const userConnect = (url, infos) => {
 };
 
 export const getBooks = (url) => {
-    return(axios({
-        method: "get",
-        url: url,
-    }));
+  return axios({
+    method: "get",
+    url: url,
+  });
 };
 
 export const getCart = (url, token) => {
-  return(axios({
-      method: "get",
-      url: url,
-      headers: {
-          Authorization: token
-      }
-  }))
+  return axios({
+    method: "get",
+    url: url,
+    headers: {
+      Authorization: token,
+    },
+  });
 };
 
 export const addCart = (url, data, token) => {
-  return(axios({
-      method: "post",
-      url: url,
-      data: data,
-      headers: {
-          Authorization: token
-      }
-  }))
+  return axios({
+    method: "post",
+    url: url,
+    data: data,
+    headers: {
+      Authorization: token,
+    },
+  });
 };
 
-export const deleteCart = (url,token) => {
-  return(axios({
-      method:"delete",
-      url:url,
-      headers: {
-          Authorization: token
-      }
-  }))
+export const deleteCart = (url, token) => {
+  return axios({
+    method: "delete",
+    url: url,
+    headers: {
+      Authorization: token,
+    },
+  });
 };

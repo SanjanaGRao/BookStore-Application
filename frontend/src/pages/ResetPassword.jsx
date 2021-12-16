@@ -25,8 +25,7 @@ export default function ResetPassword() {
     if (password !== passwordConfirmation) {
       setPasswordConfirmationNotValid(true);
       alert("Password Mismatch.");
-    }
-    else {
+    } else {
       userPost(`users/${window.location.pathname}`, {
         password: password,
         token: token,
@@ -38,78 +37,90 @@ export default function ResetPassword() {
 
   return (
     <div className="mainBoxReset">
-    <div className="reset">
-      <div className="formCenter">
-        <form className="formFields">
-          <div className="formFieldReset" align="center">
-            <span className="mainLogo">Bookstore</span>
-            <h3>Reset your Password</h3>
-          </div>
-          <div className="formFieldReset" align="center">
-            <label className="formFieldLabelReset" htmlFor="password" >
-              Enter your new Password:
-            </label>
+      <div className="reset">
+        <div className="formCenter">
+          <form className="formFields">
+            <div className="formFieldReset" align="center">
+              <span className="mainLogo">Bookstore</span>
+              <h3>Reset your Password</h3>
+            </div>
+            <div className="formFieldReset" align="center">
+              <label className="formFieldLabelReset" htmlFor="password">
+                Enter your new Password:
+              </label>
+              <br />
+              <input
+                required
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="formFieldInputReset"
+                placeholder="Enter your password*"
+                name="password"
+                error={passwordNotValid}
+                helperText={
+                  passwordNotValid
+                    ? "Invalid password"
+                    : "Use 8 or more characters with a mix of letters, numbers & symbols"
+                }
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  if (passwordNotValid) {
+                    setPasswordNotValid(false);
+                  }
+                }}
+              />
+            </div>
             <br />
-            <input
-              required
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="formFieldInputReset"
-              placeholder="Enter your password*"
-              name="password"
-              error={passwordNotValid}
-              helperText={
-                passwordNotValid
-                  ? "Invalid password"
-                  : "Use 8 or more characters with a mix of letters, numbers & symbols"
-              }
-              onChange={(event) => {
-                setPassword(event.target.value);
-                if (passwordNotValid) {
-                  setPasswordNotValid(false);
+            <div className="formFieldReset" align="center">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="formFieldInputReset"
+                placeholder="Re-type your password*"
+                name="confirmPassword"
+                error={passwordConfirmationNotValid}
+                helperText={
+                  passwordConfirmationNotValid ? "Password does not match" : ""
                 }
-              }}
-            />
-          </div>
-          <br />
-          <div className="formFieldReset" align="center">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="formFieldInputReset"
-              placeholder="Re-type your password*"
-              name="confirmPassword"
-              error={passwordConfirmationNotValid}
-              helperText={
-                passwordConfirmationNotValid ? "Password does not match" : ""
-              }
-              onChange={(event) => {
-                setPasswordConfirmation(event.target.value);
-                if (passwordConfirmationNotValid) {
-                  setPasswordConfirmationNotValid(false);
-                }
-              }}
-            />
-          </div>
-          <br />
-          <div className="formFieldReset" align="center">
-          <input type="checkbox" id="showPassword" name="showPassword" value="Show Password" onClick={handleClickShowPasswords}/>
-          <label for="showPassword" style={{ fontSize: "10px", paddingleft:"5px"}}> Show Passwords </label>
-          </div>
-          <br />
-          <div className="formFieldReset" align="center">
-            <button
-              className="formFieldButton"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
-            <br /> <br />
-          </div>
-        </form>
+                onChange={(event) => {
+                  setPasswordConfirmation(event.target.value);
+                  if (passwordConfirmationNotValid) {
+                    setPasswordConfirmationNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <br />
+            <div className="formFieldReset" align="center">
+              <input
+                type="checkbox"
+                id="showPassword"
+                name="showPassword"
+                value="Show Password"
+                onClick={handleClickShowPasswords}
+              />
+              <label
+                for="showPassword"
+                style={{ fontSize: "10px", paddingleft: "5px" }}
+              >
+                {" "}
+                Show Passwords{" "}
+              </label>
+            </div>
+            <br />
+            <div className="formFieldReset" align="center">
+              <button
+                className="formFieldButton"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+              <br /> <br />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

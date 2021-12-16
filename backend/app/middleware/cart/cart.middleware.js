@@ -1,3 +1,9 @@
+/**
+ * @file            : cart.middleware.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 const jwtHelper = require('../../../utils/jwt');
 const logger = require('../../../config/logger');
 

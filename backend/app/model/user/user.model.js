@@ -129,6 +129,9 @@
          throw err;
        });
    };
+   /**
+    * function for a user to reset the password
+    */
    resetPassword = (token, newPassword) => {
      return User.findOne({ resetPasswordToken: token })
        .then((data) => {

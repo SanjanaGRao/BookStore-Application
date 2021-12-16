@@ -73,21 +73,20 @@ export default function CreateAccount() {
       console.log(
         "Account could not be created. Please follow the rules mentioned."
       );
+    } else {
+      userPost("users", dataToPass)
+        .then((res) => {
+          if (res.status === 200) {
+            localStorage.setItem("firstName", firstName);
+            localStorage.setItem("lastName", lastName);
+            setAccountCreated(true);
+            alert("Account created successfully");
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
-    else {
-        userPost("users", dataToPass)
-          .then((res) => {
-            if (res.status === 200) {
-              localStorage.setItem("firstName", firstName);
-              localStorage.setItem("lastName", lastName);
-              setAccountCreated(true);
-              alert("Account created successfully");
-            }
-          })
-          .catch((err) => {
-            alert(err);
-          });
-      }
   };
 
   const handleClickShowPasswords = () => {
@@ -97,178 +96,190 @@ export default function CreateAccount() {
 
   return (
     <div className="mainBox">
-    <div className="createUser">
-      <div className="formCenter">
-        <form className="formFields">
-          <div className="formField">
-            <span className="mainLogo">Bookstore</span>
-            <h3>Create an Account</h3>
-            <label className="formFieldLabel" htmlFor="name">
-              First Name
-            </label>
-            <input
-              required
-              type="text"
-              id="name"
-              className="formFieldInput"
-              placeholder="Enter your first name*"
-              name="name"
-              error={firstNameNotValid}
-              helperText={firstNameNotValid ? "Invalid First Name" : ""}
-              onChange={(event) => {
-                setFirstName(event.target.value);
-                if (firstNameNotValid) {
-                  setFirstNameNotValid(false);
+      <div className="createUser">
+        <div className="formCenter">
+          <form className="formFields">
+            <div className="formField">
+              <span className="mainLogo">Bookstore</span>
+              <h3>Create an Account</h3>
+              <label className="formFieldLabel" htmlFor="name">
+                First Name
+              </label>
+              <input
+                required
+                type="text"
+                id="name"
+                className="formFieldInput"
+                placeholder="Enter your first name*"
+                name="name"
+                error={firstNameNotValid}
+                helperText={firstNameNotValid ? "Invalid First Name" : ""}
+                onChange={(event) => {
+                  setFirstName(event.target.value);
+                  if (firstNameNotValid) {
+                    setFirstNameNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <div className="formField">
+              <label className="formFieldLabel" htmlFor="name">
+                Last Name
+              </label>
+              <input
+                required
+                type="text"
+                id="lastName"
+                className="formFieldInput"
+                placeholder="Enter your last name*"
+                name="lastName"
+                error={lastNameNotValid}
+                helperText={lastNameNotValid ? "Invalid Last Name" : ""}
+                onChange={(event) => {
+                  setLastName(event.target.value);
+                  if (lastNameNotValid) {
+                    setLastNameNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <div className="formField">
+              <label className="formFieldLabel" htmlFor="name">
+                Contact Number
+              </label>
+              <input
+                required
+                type="text"
+                id="contactNumber"
+                className="formFieldInput"
+                placeholder="Enter your mobile number*"
+                name="name"
+                error={contactNoNotValid}
+                helperText={contactNoNotValid ? "Invalid Last Name" : ""}
+                onChange={(event) => {
+                  setContactNumber(event.target.value);
+                  if (contactNoNotValid) {
+                    setContactNoNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <div className="formField">
+              <label className="formFieldLabel" htmlFor="email">
+                E-Mail Address
+              </label>
+              <input
+                required
+                type="email"
+                id="email"
+                className="formFieldInput"
+                placeholder="Enter your email*"
+                name="email"
+                error={emailNotValid}
+                helperText={
+                  emailNotValid
+                    ? "Invalid Email"
+                    : "Your mail can consist of letters, numbers and periods"
                 }
-              }}
-            />
-          </div>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="name">
-              Last Name
-            </label>
-            <input
-              required
-              type="text"
-              id="lastName"
-              className="formFieldInput"
-              placeholder="Enter your last name*"
-              name="lastName"
-              error={lastNameNotValid}
-              helperText={lastNameNotValid ? "Invalid Last Name" : ""}
-              onChange={(event) => {
-                setLastName(event.target.value);
-                if (lastNameNotValid) {
-                  setLastNameNotValid(false);
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (emailNotValid) {
+                    setEmailNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <div className="formField">
+              <label className="formFieldLabel" htmlFor="password">
+                Password
+              </label>
+              <input
+                required
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="formFieldInput"
+                placeholder="Enter your password*"
+                name="password"
+                error={passwordNotValid}
+                helperText={
+                  passwordNotValid
+                    ? "Invalid password"
+                    : "Use 8 or more characters with a mix of letters, numbers & symbols"
                 }
-              }}
-            />
-          </div>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="name">
-              Contact Number
-            </label>
-            <input
-              required
-              type="text"
-              id="contactNumber"
-              className="formFieldInput"
-              placeholder="Enter your mobile number*"
-              name="name"
-              error={contactNoNotValid}
-              helperText={contactNoNotValid ? "Invalid Last Name" : ""}
-              onChange={(event) => {
-                setContactNumber(event.target.value);
-                if (contactNoNotValid) {
-                  setContactNoNotValid(false);
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  if (passwordNotValid) {
+                    setPasswordNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <div className="formField">
+              <label className="formFieldLabel" htmlFor="password">
+                Password Confirmation
+              </label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="formFieldInput"
+                placeholder="Re-type your password*"
+                name="confirmPassword"
+                error={passwordConfirmationNotValid}
+                helperText={
+                  passwordConfirmationNotValid ? "Password does not match" : ""
                 }
-              }}
-            />
-          </div>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="email">
-              E-Mail Address
-            </label>
-            <input
-              required
-              type="email"
-              id="email"
-              className="formFieldInput"
-              placeholder="Enter your email*"
-              name="email"
-              error={emailNotValid}
-              helperText={
-                emailNotValid
-                  ? "Invalid Email"
-                  : "Your mail can consist of letters, numbers and periods"
-              }
-              onChange={(event) => {
-                setEmail(event.target.value);
-                if (emailNotValid) {
-                  setEmailNotValid(false);
-                }
-              }}
-            />
-          </div>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
-              Password
-            </label>
-            <input
-              required
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="formFieldInput"
-              placeholder="Enter your password*"
-              name="password"
-              error={passwordNotValid}
-              helperText={
-                passwordNotValid
-                  ? "Invalid password"
-                  : "Use 8 or more characters with a mix of letters, numbers & symbols"
-              }
-              onChange={(event) => {
-                setPassword(event.target.value);
-                if (passwordNotValid) {
-                  setPasswordNotValid(false);
-                }
-              }}
-            />
-          </div>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
-              Password Confirmation
-            </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="formFieldInput"
-              placeholder="Re-type your password*"
-              name="confirmPassword"
-              error={passwordConfirmationNotValid}
-              helperText={
-                passwordConfirmationNotValid ? "Password does not match" : ""
-              }
-              onChange={(event) => {
-                setPasswordConfirmation(event.target.value);
-                if (passwordConfirmationNotValid) {
-                  setPasswordConfirmationNotValid(false);
-                }
-              }}
-            />
-          </div>
-          <br />
-          <div className="formField">
-          <input type="checkbox" id="showPassword" name="showPassword" value="Show Password" onClick={handleClickShowPasswords}/>
-          <label for="showPassword" style={{ fontSize: "0.75em", paddingleft:"5px"}}> Show Passwords </label>
-          </div>
-          <br />
-          <div className="formField">
-            <button
-              className="formFieldButton"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Sign Up
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/" className="formFieldLink">
-              Already have an account? Sign In
-            </Link>
-          </div>
-          {accountCreated ? (window.location = "/" ) : null}
-        </form>
+                onChange={(event) => {
+                  setPasswordConfirmation(event.target.value);
+                  if (passwordConfirmationNotValid) {
+                    setPasswordConfirmationNotValid(false);
+                  }
+                }}
+              />
+            </div>
+            <br />
+            <div className="formField">
+              <input
+                type="checkbox"
+                id="showPassword"
+                name="showPassword"
+                value="Show Password"
+                onClick={handleClickShowPasswords}
+              />
+              <label
+                for="showPassword"
+                style={{ fontSize: "0.75em", paddingleft: "5px" }}
+              >
+                {" "}
+                Show Passwords{" "}
+              </label>
+            </div>
+            <br />
+            <div className="formField">
+              <button
+                className="formFieldButton"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Sign Up
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Link to="/" className="formFieldLink">
+                Already have an account? Sign In
+              </Link>
+            </div>
+            {accountCreated ? (window.location = "/") : null}
+          </form>
+        </div>
+        <div class="imgBx" align="right" style={{ paddingRight: "3em" }}>
+          <img
+            src={img}
+            height={350}
+            width={300}
+            style={{ verticalAlign: "middle" }}
+            alt=""
+          />
+        </div>
       </div>
-      <div class="imgBx" align="right" style={{ paddingRight: "3em" }}>
-        <img
-          src={img}
-          height={350}
-          width={300}
-          style={{ verticalAlign: "middle" }}
-          alt=""
-        />
-      </div>
-    </div>
     </div>
   );
 }

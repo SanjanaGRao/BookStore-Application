@@ -10,6 +10,9 @@
  const dtoObj = require("./user.responseSchema");
  let responseObject;
  
+ /**
+  * @description Class for user controller
+  */
  class UserOperations {
    loginUser = (req, res) => {
      let userDetails = req.body;
@@ -26,7 +29,12 @@
          return res.send(responseObject);
        });
    };
-   //create a user
+  
+   /**
+    * @description to create a new user
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    create = (req, res) => {
      userService.createNewUser(req.body)
        .then((data) => {
@@ -39,7 +47,12 @@
          return res.send(responseObject);
        });
    };
-   // Retrieve and return all notes from the database.
+  
+   /**
+    * @description  to retrieve and return all notes from the database.
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    findAll = (req, res) => {
      userService.getUsers()
        .then((users) => {
@@ -52,7 +65,12 @@
          return res.send(responseObject);
        });
    };
-   // Find a single note with a noteId
+
+   /**
+    * @description to find a single note with a noteId
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    findOne = (req, res) => {
      userService.getUser(req.params.userId)
        .then((data) => {
@@ -71,7 +89,11 @@
          res.send(responseObject);
        });
    };
-   // Find note and update it with the request body
+   /**
+    * @description to find note and update it with the request body
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    update = (req, res) => {
      let id = req.params.userId;
      let userDetails = req.body;
@@ -91,7 +113,11 @@
        });
    };
  
-   // Delete a note with the specified noteId in the request
+    /**
+    * @description to delete a note with the specified noteId in the request
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    delete = (req, res) => {
      userService.deleteUsers(req.params.userId)
        .then((result) => {
@@ -108,7 +134,11 @@
          res.send(responseObject);
        });
    };
- 
+   /**
+    * @description to send an email if the user forgets the password
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    forgotPassword = (req, res) => {
      let email = req.body.email;
      userService.forgot(email)
@@ -121,7 +151,12 @@
          res.send(err);
        });
    };
- 
+   
+   /**
+    * @description to reset the user's password
+    * @param {Object} req 
+    * @param {Object} res 
+    */
    resetPassword = (req, res) => {
      let token = req.params.token;
      let password = req.body.password;

@@ -61,69 +61,74 @@ export default function CartComponents({ cart }) {
 
           {cart.items.map((data) => (
             <div className="cartConatiner">
-              <div container className="myCart" spacing={4} style={{ paddingLeft: "2.5em" }}>
+              <div
+                container
+                className="myCart"
+                spacing={4}
+                style={{ paddingLeft: "2.5em" }}
+              >
                 <div className="image" align="left">
-                <Grid item xs={4} sx={{ p: 2 }}>
-                  <img className="bookImage" src={data.image} alt="" />
-                </Grid>
+                  <Grid item xs={4} sx={{ p: 2 }}>
+                    <img className="bookImage" src={data.image} alt="" />
+                  </Grid>
                 </div>
-                <div className="bookDetails" align="right"> 
-                <Grid item xs={8} className="grid">
+                <div className="bookDetails" align="right">
+                  <Grid item xs={8} className="grid">
                     <Typography
-                    align="left"
+                      align="left"
                       style={{ fontWeight: "bold", fontSize: "17px" }}
                     >
                       {data.name}
                     </Typography>
                     <Typography
-                    align="left"
+                      align="left"
                       color="text.secondary"
-                      style={{ fontSize: "14px", color:"#9D9D9D" }}
+                      style={{ fontSize: "14px", color: "#9D9D9D" }}
                     >
                       by {data.author}
                     </Typography>
                     <Typography
-                    align="left"
+                      align="left"
                       style={{ fontWeight: "bold", fontSize: "17px" }}
                     >
                       Rs {data.price}
                     </Typography>
                     <br />
                     <div align="left">
-                    <IconButton
-                      onClick={() => {
-                        handleQuantity(data.productId, -1);
-                      }}
-                      size="small"
-                    >
-                      <RemoveCircleOutlineIcon size="small"/>
-                    </IconButton>
-                    <input
-                      type="number"
-                      min="1"
-                      max="5"
-                      value={data.quantity}
-                      name="quantity"
-                    />
-                    <IconButton
-                      onClick={() => {
-                        handleQuantity(data.productId, 1);
-                      }}
-                      size="small"
-                    >
-                      <AddCircleOutlineIcon size="small"/>
-                    </IconButton> 
-                    <Button
-                      variant="text"
-                      onClick={() => {
-                        handleRemove(data.productId);
-                      }}
-                      style={{paddingRight:"2.2em"}}
-                    >
-                      Remove
-                    </Button>
+                      <IconButton
+                        onClick={() => {
+                          handleQuantity(data.productId, -1);
+                        }}
+                        size="small"
+                      >
+                        <RemoveCircleOutlineIcon size="small" />
+                      </IconButton>
+                      <input
+                        type="number"
+                        min="1"
+                        max="5"
+                        value={data.quantity}
+                        name="quantity"
+                      />
+                      <IconButton
+                        onClick={() => {
+                          handleQuantity(data.productId, 1);
+                        }}
+                        size="small"
+                      >
+                        <AddCircleOutlineIcon size="small" />
+                      </IconButton>
+                      <Button
+                        variant="text"
+                        onClick={() => {
+                          handleRemove(data.productId);
+                        }}
+                        style={{ paddingRight: "2.2em" }}
+                      >
+                        Remove
+                      </Button>
                     </div>
-                </Grid>
+                  </Grid>
                 </div>
               </div>
             </div>

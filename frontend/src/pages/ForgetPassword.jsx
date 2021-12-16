@@ -12,8 +12,7 @@ export default function ForgetPassword() {
     if (email === "" || !emailValidation.test(email)) {
       setEmailNotValid(true);
       alert("An error occured.");
-    }
-    else {
+    } else {
       userPost("users/forgot", {
         email: email,
       });
@@ -22,8 +21,8 @@ export default function ForgetPassword() {
   };
 
   const handleBackButton = () => {
-      window.location="/";
-  }
+    window.location = "/";
+  };
 
   return (
     <div className="mainBoxForget">
@@ -60,29 +59,30 @@ export default function ForgetPassword() {
               }}
             />
           </div>
-          <br /><br />
+          <br />
+          <br />
           <div className="buttonss">
-          <div className="formFieldForget" align="left">
-            <button
-              className="formFieldButtonForget"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Next
-            </button>
-          </div>
-          <div className="formFieldForget2" align="right">
-            <button
-              className="formFieldButtonForget"
-              type="button"
-              onClick={handleBackButton}
-            >
+            <div className="formFieldForget" align="left">
+              <button
+                className="formFieldButtonForget"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Next
+              </button>
+            </div>
+            <div className="formFieldForget2" align="right">
+              <button
+                className="formFieldButtonForget"
+                type="button"
+                onClick={handleBackButton}
+              >
                 Back
-            </button>
+              </button>
+            </div>
           </div>
-        </div>
         </form>
       </div>
-      </div>
+    </div>
   );
 }

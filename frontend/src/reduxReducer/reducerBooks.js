@@ -3,7 +3,7 @@ const intialState = {
   books: [],
   searchedBooks: [],
   currentPage: 1,
-  cartContents: [],
+  cartContents: {},
   orderId: "",
 };
 

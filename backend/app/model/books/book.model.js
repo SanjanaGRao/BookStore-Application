@@ -1,3 +1,9 @@
+/**
+ * @file            : book.model.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 const mongoose = require('mongoose');
 var validate = require('mongoose-validator');
 var urlValidator = [validate( { 
@@ -5,6 +11,9 @@ var urlValidator = [validate( {
     message: 'Must be a Valid URL' ,
   })];
 
+  /**
+   * @description Schema for books
+   */
 const BookSchema = mongoose.Schema({
     author: {
         type: String,
@@ -35,10 +44,21 @@ const BookSchema = mongoose.Schema({
 );
 
 const Book = mongoose.model("Book", BookSchema);
+
+/**
+ * @description to find all the books present in the database
+ * @returns data
+ */
 const findAllBooks = () => {
     return Book.find();
-}
+};
+
+/**
+ * @description to find a book present in the database
+ * @returns data
+ */
 const findBook = (findId)=>{
     return Book.findById(findId)
-}
-module.exports= { findAllBooks, findBook }
+};
+
+module.exports= { findAllBooks, findBook };

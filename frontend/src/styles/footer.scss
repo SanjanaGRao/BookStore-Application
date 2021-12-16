@@ -1,21 +1,21 @@
-footer{
+footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  background: #2e1d1e;
+}
+.bottom center {
+  padding: 5px;
+  font-size: 0.9375rem;
+  background: #2e1d1e;
+}
+.bottom center span {
+  color: #ffffff;
+  font-size: 12px;
+}
+@media screen and (max-width: 900px) {
+  footer {
     position: relative;
     bottom: 0px;
-    width: 100%;
-    background: #2E1D1E;
   }
-.bottom center{
-    padding: 5px;
-    font-size: 0.9375rem;
-    background: #2E1D1E;
-  }
-  .bottom center span{
-    color:#FFFFFF;
-    font-size: 12px;
-  }
-@media screen and (max-width: 900px) {
-    footer{
-      position: relative;
-      bottom: 0px;
-    }
 }

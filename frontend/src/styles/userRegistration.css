@@ -156,7 +156,6 @@
   display: block;
   font-size: 0.9em;
   color: black;
-
 }
 
 .formFieldInputForget {
@@ -189,7 +188,7 @@
   padding-right: 2.5em;
 }
 
-.buttonss{
+.buttonss {
   display: inline-block;
   display: flex;
   padding-left: 2.5em;
@@ -221,7 +220,7 @@
   display: block;
   font-size: 0.9em;
   color: black;
-  text-align:"left" ;
+  text-align: "left";
 }
 
 .formFieldInputReset {

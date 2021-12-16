@@ -1,4 +1,14 @@
+/**
+ * @file            : customer.model.js
+ * @author          : Sanjana Rao
+ * @version         : 1.0
+ * @since           : 07-12-2021
+ */
 const mongoose = require('mongoose');
+
+/**
+ * @description A schema to define customer details
+ */
 const CustomerSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +25,12 @@ const CustomerSchema = mongoose.Schema({
 }, {timestamps: true});
 const Customer = mongoose.model('Customer', CustomerSchema);
 
+/**
+ * @description method to create new customer address detail
+ * @param {Object} userId 
+ * @param {Object} customerDetails 
+ * @returns data
+ */
 const createCustomer = (userId,customerDetails) => {
     const customer = new Customer({
         userId:userId,
@@ -30,10 +46,21 @@ const createCustomer = (userId,customerDetails) => {
     return customer.save();
 };
 
+/**
+ * @description method to find a particular customer detail
+ * @param {Object} userId 
+ * @returns data
+ */
 const findCustomer = (userId) => {
     return Customer.find({userId: userId})
 };
 
+/**
+ * @description method to update customer address details
+ * @param {Object} userId 
+ * @param {Object} customerDetails 
+ * @returns data
+ */
 const updateCustomer = (userId, customerDetails) => {
     return Customer.findOneAndUpdate({
         userId: userId

@@ -21,6 +21,7 @@
        .withMessage("Please enter a valid password with at least 6 characters."),
    ];
  };
+
  /**
   * to print the error messages
   * @param {Object} req
@@ -38,8 +39,5 @@
    return res.status(422).json({ errors: extractedErrors });
  };
  
- module.exports = {
-   userValidationRules,
-   validate,
- };
+ module.exports = { userValidationRules, validate };
  
