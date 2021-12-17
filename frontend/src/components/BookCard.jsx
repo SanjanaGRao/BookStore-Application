@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 import "../styles/booksCard.scss";
 import PaginationPage from "./Pagination";
 import {
-  sortByPrice,
   setCurrentPage,
   setCart,
+  setSearchedBooks
 } from "../reduxActions/actionsOnBooks";
 import { create } from "../service/cartOperations";
+import { sortBooks } from '../service/booksForDashboard';
 
 const useStyles = makeStyles((theme) => ({
   bookName: {
@@ -56,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "2px",
     fontWeight: "bold",
   },
+  wishListedButton: {
+    width: "170px",
+    margin: "5px",
+      border: "1px solid #9D9D9D",
+    fontSize: "11px",
+    fontWeight: "bold",
+  },
   optionSelect: {
     padding: "5px 5px",
   },
@@ -79,9 +87,11 @@ export default function BookCard() {
   console.log(books);
   const dispatch = useDispatch();
 
-  const handleSort = (e) => {
-    setSort(e.target.value);
-    dispatch(sortByPrice(e.target.value));
+  const handleSort = (event) => {
+    setSort(event.target.value);
+    sortBooks({descending:event.target.value})
+    .then((res)=>{dispatch(setSearchedBooks(res.data))})
+    .catch((err)=>{console.log(err)})
     dispatch(setCurrentPage(1));
   };
 
@@ -117,6 +127,16 @@ export default function BookCard() {
   const AddedToBag = () => {
     return <Button className={classes.addedBagButton}>Added To Bag</Button>;
   };
+
+  const Wishlisted = () => {
+    return (
+        <div className="buttonContainer">
+            <Button className={
+                classes.wishListedButton
+            }>Wishlist</Button>
+        </div>
+    )
+}
 
   return (
     <div className="displayBook">
@@ -156,6 +176,11 @@ export default function BookCard() {
           <div className="bookContainer">
             <div className="imageContainer">
               <img className="bookImage" src={data.image} alt="" />
+              { data.quantity === 0 ? (
+                <div className="out-of-stock">OUT OF STOCK </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="infoContainer">
               <Typography className={classes.bookName}>{data.title}</Typography>
@@ -169,10 +194,10 @@ export default function BookCard() {
             </div>
             {cart &&
             Object.keys(cart).length !== 0 &&
-            cart.items.some((obj) => obj.name === data.title) ? (
+            cart.items.some((obj) => obj.productId === data._id) ? (
               <AddedToBag />
             ) : (
-              <ButtonContainer data={data} />
+              (data.quantity === 0) ? <Wishlisted/>: <ButtonContainer data={data}/>
             )}
             <div className="descClass">
               <Typography className={classes.bookName}>Book Detail</Typography>

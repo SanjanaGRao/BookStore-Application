@@ -21,12 +21,26 @@ export const userConnect = (url, infos) => {
     });
 };
 
-export const getBooks = (url) => {
-  return axios({
-    method: "get",
-    url: url,
-  });
-};
+export const getBooks = (url, token) => {
+  return(axios({
+      method: "get",
+      url: url,
+      headers: {
+          Authorization: token
+      }
+  }))
+}
+
+export const searchBooks = (url, data, token) => {
+  return(axios({
+      method: "post",
+      url: url,
+      data: data,
+      headers: {
+          Authorization: token
+      }
+  }))
+}
 
 export const getCart = (url, token) => {
   return axios({

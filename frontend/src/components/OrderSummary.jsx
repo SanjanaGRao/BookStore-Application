@@ -21,7 +21,7 @@ export default function OrderSummary({ showOrder, orders }) {
       .catch((err) => {
         console.log(err);
       });
-    dispatch(setCart());
+    dispatch(setCart({}));
     dispatch(setOrderID(orders._id));
     history.push("/orderComplete");
   };

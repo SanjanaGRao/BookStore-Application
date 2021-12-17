@@ -5,7 +5,7 @@
  * @since           : 07-12-2021
  */
 const Cart = require("../../model/cart/cart.model");
-const { findABook } = require("../books/book.service");
+const { findABook, updateQuantity } = require("../books/book.service");
 const logger = require("../../../config/logger");
 
 /**
@@ -56,6 +56,9 @@ class cartService {
     const name = item.title;
     const author = item.author;
     const image = item.image;
+    updateQuantity(productId,quantity)
+    .then()
+    .catch(e => console.log(e));
     if (cart.length != 0) {
       // if cart exists for the user
       let itemIndex = cart[0].items.findIndex((p) => p.productId == productId);
@@ -115,10 +118,17 @@ class cartService {
       let productItem = cart[0].items[itemIndex];
       cart[0].bill -= productItem.quantity * productItem.price;
       cart[0].items.splice(itemIndex, 1);
+      updateQuantity(productId,-productItem.quantity).then().catch(e=>console.log(e));
     }
     cart = await cart[0].save();
     return cart;
   };
+
+  /**
+   * @description to empty the cart
+   * @param {Object} userId 
+   * @returns message or error
+   */
   deleteCart= async(userId) => {
     let cart;
     try {
@@ -128,7 +138,7 @@ class cartService {
         logger.error(err);
     }
     await cart[0].delete();
-    return ("Successfully deleted")
+    return ("Successfully deleted");
   };
 }
 module.exports = new cartService();
