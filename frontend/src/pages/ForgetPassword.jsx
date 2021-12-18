@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/userRegistration.css";
 import { emailValidation } from "../config/validation";
+import TextField from "@mui/material/TextField";
 import userPost from "../service/userIntegration";
 
 export default function ForgetPassword() {
@@ -38,10 +39,11 @@ export default function ForgetPassword() {
               Enter your EMail Address:
             </label>
             <br />
-            <input
+            <TextField
               required
               type="email"
               id="email"
+              variant="standard"
               className="formFieldInputForget"
               placeholder="Enter your email*"
               name="email"
@@ -49,7 +51,7 @@ export default function ForgetPassword() {
               helperText={
                 emailNotValid
                   ? "Invalid Email"
-                  : "Your mail can consist of letters, numbers and periods"
+                  : ""
               }
               onChange={(event) => {
                 setEmail(event.target.value);

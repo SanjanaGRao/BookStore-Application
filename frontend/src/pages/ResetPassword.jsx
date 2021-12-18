@@ -3,6 +3,7 @@ import "../styles/userRegistration.css";
 import { passwordValidation } from "../config/validation";
 import userPost from "../service/userIntegration";
 import { useParams } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
@@ -49,10 +50,11 @@ export default function ResetPassword() {
                 Enter your new Password:
               </label>
               <br />
-              <input
+              <TextField
                 required
                 type={showPassword ? "text" : "password"}
                 id="password"
+                variant="standard"
                 className="formFieldInputReset"
                 placeholder="Enter your password*"
                 name="password"
@@ -60,7 +62,7 @@ export default function ResetPassword() {
                 helperText={
                   passwordNotValid
                     ? "Invalid password"
-                    : "Use 8 or more characters with a mix of letters, numbers & symbols"
+                    : ""
                 }
                 onChange={(event) => {
                   setPassword(event.target.value);
@@ -72,9 +74,10 @@ export default function ResetPassword() {
             </div>
             <br />
             <div className="formFieldReset" align="center">
-              <input
+              <TextField
                 type={showPassword ? "text" : "password"}
                 id="password"
+                variant="standard"
                 className="formFieldInputReset"
                 placeholder="Re-type your password*"
                 name="confirmPassword"

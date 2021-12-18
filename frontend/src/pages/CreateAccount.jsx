@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import img from "../assets/book-store-facade-vector-illustration-260nw-1926317108.jpg";
 import userPost from "../service/userIntegration";
+import TextField from "@mui/material/TextField";
 import "../styles/userRegistration.css";
 import {
   nameValidation,
@@ -101,14 +102,17 @@ export default function CreateAccount() {
           <form className="formFields">
             <div className="formField">
               <span className="mainLogo">Bookstore</span>
-              <h3>Create an Account</h3>
+              <h4>Create an Account</h4>
               <label className="formFieldLabel" htmlFor="name">
                 First Name
               </label>
-              <input
+              <TextField
+              style={{paddingTop:"0", paddingBottom:"0"}}
                 required
                 type="text"
                 id="name"
+                size="small"
+                variant="standard"
                 className="formFieldInput"
                 placeholder="Enter your first name*"
                 name="name"
@@ -121,15 +125,17 @@ export default function CreateAccount() {
                   }
                 }}
               />
-            </div>
-            <div className="formField">
+              </div>
+            <div className="formField" >
               <label className="formFieldLabel" htmlFor="name">
                 Last Name
               </label>
-              <input
+              <TextField
                 required
                 type="text"
                 id="lastName"
+                size="small"
+                variant="standard"
                 className="formFieldInput"
                 placeholder="Enter your last name*"
                 name="lastName"
@@ -147,10 +153,12 @@ export default function CreateAccount() {
               <label className="formFieldLabel" htmlFor="name">
                 Contact Number
               </label>
-              <input
+              <TextField
                 required
                 type="text"
+                variant="standard"
                 id="contactNumber"
+                size="small"
                 className="formFieldInput"
                 placeholder="Enter your mobile number*"
                 name="name"
@@ -168,10 +176,12 @@ export default function CreateAccount() {
               <label className="formFieldLabel" htmlFor="email">
                 E-Mail Address
               </label>
-              <input
+              <TextField
                 required
                 type="email"
                 id="email"
+                variant="standard"
+                size="small"
                 className="formFieldInput"
                 placeholder="Enter your email*"
                 name="email"
@@ -193,10 +203,12 @@ export default function CreateAccount() {
               <label className="formFieldLabel" htmlFor="password">
                 Password
               </label>
-              <input
+              <TextField
                 required
                 type={showPassword ? "text" : "password"}
                 id="password"
+                size="small"
+                variant="standard"
                 className="formFieldInput"
                 placeholder="Enter your password*"
                 name="password"
@@ -218,9 +230,11 @@ export default function CreateAccount() {
               <label className="formFieldLabel" htmlFor="password">
                 Password Confirmation
               </label>
-              <input
+              <TextField
                 type={showPassword ? "text" : "password"}
                 id="password"
+                variant="standard"
+                size="small"
                 className="formFieldInput"
                 placeholder="Re-type your password*"
                 name="confirmPassword"

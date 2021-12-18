@@ -1,6 +1,7 @@
 import React from "react";
 import img from "../assets/book-store-facade-vector-illustration-260nw-1926317108.jpg";
 import "../styles/userRegistration.css";
+import TextField from "@mui/material/TextField";
 import { Link, Redirect } from "react-router-dom";
 import userPost from "../service/userIntegration";
 
@@ -61,10 +62,11 @@ export default function Login() {
               <label className="formFieldLabel" htmlFor="email">
                 E-Mail Address
               </label>
-              <input
+              <TextField
                 required
                 type="email"
                 id="email"
+                variant="standard"
                 className="formFieldInputLogin"
                 placeholder="Enter your email*"
                 name="email"
@@ -72,7 +74,7 @@ export default function Login() {
                 helperText={
                   emailNotValid
                     ? "Invalid Email"
-                    : "Your mail can consist of letters, numbers and periods"
+                    : ""
                 }
                 onChange={(event) => {
                   setEmail(event.target.value);
@@ -86,10 +88,11 @@ export default function Login() {
               <label className="formFieldLabel" htmlFor="password">
                 Password
               </label>
-              <input
+              <TextField
                 required
                 type={showPassword ? "text" : "password"}
                 id="password"
+                variant="standard"
                 className="formFieldInputLogin"
                 placeholder="Enter your password*"
                 name="password"
@@ -97,7 +100,7 @@ export default function Login() {
                 helperText={
                   passwordNotValid
                     ? "Invalid password"
-                    : "Use 8 or more characters with a mix of letters, numbers & symbols"
+                    : ""
                 }
                 onChange={(event) => {
                   setPassword(event.target.value);
