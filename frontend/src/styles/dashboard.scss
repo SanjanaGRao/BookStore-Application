@@ -1,15 +1,19 @@
+
 .dashboard {
   position: absolute;
   top: 0px;
   left: 0px;
   max-width: 1366px;
   max-height: 1322px;
-  background: #ffffff 0% 0% no-repeat padding-box;
+  background:#ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #e2e2e2;
   opacity: 1;
 }
+
+$mycolor: white;
+
 .MuiIconButton-root {
-  color: white;
+  color: $mycolor;
   padding: 0;
 }
 
@@ -23,4 +27,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.Footerrr {
+  position: inherit;
+  display: flex;
+  padding-top: 63em;
+}
+@media only screen and (max-width: 500px) {
+  .Footerrr{
+    padding-top: 257em;
+    width: 100%;
+  }
 }

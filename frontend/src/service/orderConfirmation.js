@@ -1,9 +1,10 @@
 import { getToken } from "../utils/userTokens";
 import { getCart, addCart } from "../helper/axiosUrl";
+import { baseUrl } from "../config/baseUrl";
 const token = getToken();
 
 export const getOrder = () => {
-  let url = "http://localhost:5000/order/";
+  let url = `${baseUrl}/order/`;
   return getCart(url, `bearer ${token}`)
     .then((response) => {
       return response;
@@ -14,7 +15,7 @@ export const getOrder = () => {
 };
 
 export const createOrder = (data) => {
-  let url = "http://localhost:5000/order/";
+  let url = `${baseUrl}/order/`;
   return addCart(url, data, `bearer ${token}`)
     .then((response) => {
       return response;

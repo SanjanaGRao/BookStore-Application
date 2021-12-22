@@ -90,8 +90,8 @@ select {
   left: 90%;
 }
 .pagination-box {
-  position: inherit;
-  top: 983px;
+  // position: inherit;
+  top: 953px;
   left: 350px;
   width: 527px;
   height: 37px;
@@ -100,7 +100,7 @@ select {
 .pagination {
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
-  padding-top: 4em;
+  padding-left: 4em;
 }
 .pagination a {
   color: black;
@@ -150,4 +150,11 @@ select {
   .bookContainer {
     width: 100%;
   }
+    .topContent {
+      display: flex;
+      flex-direction: column;
+      padding: 2%;
+      padding-top: 1.2em;
+    }
+    
 }

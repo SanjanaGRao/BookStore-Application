@@ -263,6 +263,87 @@
   display: inline-block;
   display: flex;
 }
-.css-1x51dt5-MuiInputBase-input-MuiInput-input{
-  padding: 0;
+
+/* Mobile display */
+@media (max-width: 650px) {
+  .createUser {
+    max-width: 360px;
+    height: 700px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0em;
+  }
+  .mainBox{
+    padding: 0em;
+  }
+  .formFieldInput{
+    width: 85%;
+  }
+   .imgBx {
+    display: none;
+  }
+}
+
+/* Mobile and Tab display */
+@media (max-width: 1024px) {
+  .createUser {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 2em;
+  }
+  .login {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    padding-left: 0em;
+  }
+  .forget{
+    max-width: 200%;
+    height: 130%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0em;
+  }
+  .reset{
+    max-width: 100%;
+    height: 130%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0em;
+  }
+  .mainBox{
+    padding-top: 0em;
+    padding-left: 0em;
+  }
+  .mainBoxLogin {
+    padding-top: 0em;
+    padding-left: 0em;
+  }
+  .mainBoxForget {
+    padding-top: 0em;
+    padding-left: 0em;
+  }
+  .mainBoxReset {
+    padding-top: 0em;
+    padding-left: 0em;
+  }
+  .buttonss{
+    display: block;
+    padding-bottom: 3em;
+  }
+  .formFieldForget2{
+    padding-left: 0em;
+    padding-top: 2em;
+  }
+  .formFieldInput{
+    width: 75%;
+  }
 }

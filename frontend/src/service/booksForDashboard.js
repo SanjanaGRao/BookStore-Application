@@ -1,9 +1,10 @@
 import { getBooks, searchBooks } from "../helper/axiosUrl";
 import { getToken } from "../utils/userTokens";
+import { baseUrl } from "../config/baseUrl";
 const token = getToken();
 
 export const getAllBooks = () => {
-  let url = "http://localhost:5000/books";
+  let url = `${baseUrl}/books`;
   return getBooks(url, `bearer ${token}`)
     .then((response) => {
       return response;
@@ -14,7 +15,7 @@ export const getAllBooks = () => {
 };
 
 export const searchABook = (data) => {
-  let url = "http://localhost:5000/books/search";
+  let url = `${baseUrl}/books/search`;
   return searchBooks(url,data,`bearer ${token}`).then((response) => {
       return response;
   }).catch((err) => {
@@ -23,7 +24,7 @@ export const searchABook = (data) => {
 };
 
 export const sortBooks = (data) => {
-  let url = "http://localhost:5000/books/sort"
+  let url = `${baseUrl}/books/sort`;
   return searchBooks(url,data,`bearer ${token}`).then((response) => {
       return response;
   }).catch((err) => {

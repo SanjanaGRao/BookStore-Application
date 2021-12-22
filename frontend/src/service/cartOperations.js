@@ -1,9 +1,10 @@
 import { getToken } from "../utils/userTokens";
 import { getCart, addCart, deleteCart } from "../helper/axiosUrl";
+import { baseUrl } from "../config/baseUrl";
 const token = getToken();
 
 export const cartGet = () => {
-  let url = "http://localhost:5000/cart";
+  let url = `${baseUrl}/cart`;
   return getCart(url, `bearer ${token}`)
     .then((response) => {
       return response;
@@ -14,7 +15,7 @@ export const cartGet = () => {
 };
 
 export const create = (data) => {
-  let url = "http://localhost:5000/cart";
+  let url = `${baseUrl}/cart`;
   return addCart(url, data, `bearer ${token}`)
     .then((response) => {
       return response;
@@ -26,7 +27,7 @@ export const create = (data) => {
 
 export const deleteItems = (id) => {
   console.log(id);
-  let url = `http://localhost:5000/cart/${id}`;
+  let url = `${baseUrl}/cart/${id}`;
   return deleteCart(url, `bearer ${token}`)
     .then((response) => {
       return response;
@@ -37,7 +38,7 @@ export const deleteItems = (id) => {
 };
 
 export const emptyCart = (id) => {
-  let url = "http://localhost:5000/cart";
+  let url = `${baseUrl}/cart`;
   return deleteCart(url, `bearer ${token}`)
     .then((response) => {
       return response;

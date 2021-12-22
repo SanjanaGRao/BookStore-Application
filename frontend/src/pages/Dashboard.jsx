@@ -48,7 +48,7 @@ export default function Dashboard() {
         >
           <BookCard />
         </Paper>
-        <div style={{ paddingTop: "62em" }}>
+        <div className="Footerrr">
           <Footer />
         </div>
       </>

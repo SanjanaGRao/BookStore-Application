@@ -81,3 +81,8 @@
   color: #ffffff;
   padding: 0;
 }
+@media only screen and (max-width: 600px) {
+  .contactImage{
+    width: 70%;
+  }
+}

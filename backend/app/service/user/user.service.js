@@ -8,6 +8,17 @@ const userModels = require("../../model/user/user.model");
 const jwtHelper = require("../../../utils/jwt");
 const emailer = require("../../../utils/nodeMailer");
 const bcrypt = require("bcrypt");
+const UserRedis = require("../../redis/cache");
+const redis = require("redis");
+
+const client = redis.createClient(6379);
+// const client = redis.createClient({
+//   host: 'redis-server',
+//   port: 6379
+// })
+client.on("error", (error) => {
+  console.error(error);
+});
 
 class UserService {
   /**
@@ -41,8 +52,25 @@ class UserService {
   /**
    * @description Service layer function for finding all user
    */
-  getUsers = () => {
-    return userModels.findAllUsers();
+  getUsers = async () => {
+    try {
+      await client.connect();
+      const res = await UserRedis.findAll({ key: "users", client: client });
+      console.log("from redis " + JSON.stringify(res));
+      if (res == null) {
+        const data = await userModels.findAllUsers();
+        client.setEx("users", 150, JSON.stringify(data));
+        return data;
+      } else {
+        client.del("users");
+        console.log(client);
+        console.log("data found");
+        await client.disconnect();
+        return res;
+      }
+    } catch (err) {
+      return err;
+    }
   };
 
   /**

@@ -84,8 +84,8 @@ export default function Appbar() {
                 )}
               </div>
             </IconButton>
+            <div className="cart">Cart</div>
           </div>
-          <div className="cart">Cart</div>
         </div>
       </div>
     </nav>
