@@ -23,7 +23,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: "https://bookstore-application-webpage.herokuapp.com",
+  origin: process.env.FRONTEND_URL ,
   credentials: true,
   optionSuccessStatus: 200,
 };
